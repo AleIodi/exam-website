@@ -1,0 +1,1084 @@
+/* ==========================================
+   Variabili
+   ========================================== */
+:root {
+    --primary-color: #e67e00;
+    --primary-color-hover: #d65000;
+    --secondary-color: #2e7d32;
+    --secondary-color-hover: #1b5e20;
+    --accent-color: #ffc107;
+    --text-color: #212121;
+    --text-light: #555555;
+    --background-color: #fff8f0;
+    --white: #ffffff;
+    --shadow: 0 2px 10px rgba(56, 142, 60, 0.08);
+    --shadow-hover: 0 5px 15px rgba(255, 152, 0, 0.15);
+    --header-height: 60px;
+    --sidebar-width: 250px;
+}
+
+/* ==========================================
+   Stili Base
+   ========================================== */
+body {
+    min-height: 100vh;
+    font-size: clamp(1rem, 0.5rem + 1vw, 1.2rem);
+    background-color: var(--background-color);
+    transition: background-color 0.5s;
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+#main {
+    transition: opacity 0.5s;
+    padding: 15px;
+}
+
+/* ==========================================
+   3. Typography
+   ========================================== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+h1 {
+    font-size: clamp(2em, 1.5em + 2vw, 2.5em);
+}
+
+h2 {
+    font-size: clamp(1.5em, 1.2em + 1.5vw, 1.8em);
+}
+
+h3 {
+    font-size: clamp(1.2em, 1em + 1.2vw, 1.4em);
+}
+
+h4 {
+    font-size: clamp(1em, 0.9em + 0.8vw, 1.1em);
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 1em;
+}
+
+
+/* ==========================================
+   Layout sezione ricette
+   ========================================== */
+.section-ricette {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    padding: 10px;
+}
+
+/* ==========================================
+   Header e Navbar
+   ========================================== */
+.site-header {
+    background-color: var(--white);
+    padding: 0.75em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    box-shadow: var(--shadow);
+    z-index: 1000;
+    flex-wrap: wrap;
+    min-height: var(--header-height);
+}
+
+.left-header {
+    display: flex;
+}
+
+.logo-titolo {
+    display: flex;
+    justify-content: center;
+}
+
+.logo-titolo>a {
+    text-decoration: none;
+    color: inherit;
+    display: inline-flex;
+    align-items: center;
+}
+
+.site-logo {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+}
+
+.titolo {
+    font-weight: 600;
+    margin: 0;
+    padding-left: 0.5em;
+    font-size: clamp(1.2em, 1em + 1vw, 1.5em);
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.logo-titolo>a:hover .titolo,
+.logo-titolo>a:focus .titolo {
+    color: var(--primary-color);
+}
+
+
+.icon-menu {
+    font-size: 1.5em;
+    cursor: pointer;
+    color: var(--primary-color);
+    background: transparent;
+    border: none;
+    padding: 0.5em;
+    margin-right: 0.5em;
+}
+
+.icon-menu:hover {
+    color: var(--primary-color-hover);
+}
+
+/* ==========================================
+   Barra di ricerca
+   ========================================== */
+.search-container {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    max-width: 100%;
+    margin: 0.5em 0;
+    order: 1;
+    width: 100%;
+}
+
+.search-form {
+    width: 100%;
+    max-width: 500px;
+    height: 40px;
+    overflow: hidden;
+}
+
+.search-input {
+    flex-grow: 1;
+    border: 1px solid var(--accent-color);
+    border-radius: 50px 0 0 50px;
+    border-right: none;
+    font-size: 0.9em;
+    padding: 0 15px;
+    min-width: 0;
+}
+
+.search-input:focus {
+    border-color: var(--primary-color-hover);
+}
+
+.search-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0 50px 50px 0;
+    font-weight: 600;
+    transition: background-color 0.2s;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-button:hover {
+    background-color: var(--primary-color-hover);
+}
+
+/* ==========================================
+   Sidebar e Menu
+   ========================================== */
+.overlay {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1001;
+    top: 0;
+    left: 0;
+    background-color: rgba(46, 125, 50, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1002;
+    top: 0;
+    left: 0;
+    background-color: var(--secondary-color);
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-top: var(--header-height);
+    transition: width 0.4s ease-in-out;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar a,
+.sidebar .dropdown-btn,
+.sidebar .closebtn {
+    padding: 12px 16px;
+    text-decoration: none;
+    color: var(--white);
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    align-items: center;
+    border: none;
+    margin: 0;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: transparent;
+    text-align: left;
+    cursor: pointer;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 20px;
+    padding: calc(var(--header-height) / 2 - 10px) 16px;
+    width: auto;
+    height: var(--header-height);
+    line-height: 1;
+}
+
+.sidebar .icon-cancel {
+    font-size: 1.2em;
+}
+
+.sidebar a:hover,
+.sidebar .dropdown-btn:hover,
+.sidebar .closebtn:hover {
+    color: var(--accent-color);
+    background-color: var(--secondary-color-hover);
+}
+
+.dropdown-btn {
+    justify-content: space-between;
+}
+
+.dropdown-btn .left-section {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-btn .icon-up {
+    transition: transform 0.3s ease-in-out;
+}
+
+.dropdown-container {
+    display: none;
+    background-color: var(--secondary-color-hover);
+    border-left: 3px solid var(--primary-color);
+    margin-left: 16px;
+}
+
+.dropdown-container a {
+    padding-left: 24px;
+    font-size: 0.95rem;
+}
+
+.dropdown-container a:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================
+   Sezione Ricette
+   ========================================== */
+.titolo-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--primary-color);
+    background: var(--white);
+    border-radius: 12px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.titolo-section .title-group a {
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.titolo-section .title-group a:hover,
+.titolo-section .title-group a:focus {
+    color: var(--secondary-color);
+}
+
+.titolo-section h3 {
+    margin: 0;
+    font-weight: 600;
+    padding-left: 1em;
+}
+
+.titolo-section .title-group {
+    flex-grow: 1;
+}
+
+.titolo-section .link-group {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    padding-right: 1em;
+}
+
+.btn-view-all-header {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-view-all-header:hover,
+.btn-view-all-header:focus {
+    background-color: var(--primary-color-hover);
+    color: var(--white);
+    transform: translateY(-1px);
+}
+
+.btn-view-all-header .icon-down {
+    color: var(--white);
+}
+
+.titolo-section a.btn-view-all-header:hover .icon-down,
+.titolo-section a.btn-view-all-header:focus .icon-down {
+    color: var(--white);
+}
+
+
+/* Icons */
+.icon-down {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    transform: rotate(-90deg);
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+.icon-star::before {
+    color: var(--primary-color);
+    vertical-align: middle;
+}
+
+.icon-comment::before {
+    color: var(--secondary-color);
+    opacity: 0.9;
+    vertical-align: middle;
+}
+
+.contenuto-section-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+/* ==========================================
+   Recipe Card
+   ========================================== */
+article.section-ricette,
+.section-ricette article {
+    background-color: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-ricette article:hover,
+.section-ricette article:focus-within {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.section-ricette article a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-ricette article img {
+    width: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+}
+
+.section-ricette article:hover img,
+.section-ricette article:focus-within img {
+    transform: scale(1.05);
+}
+
+.card-content {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-around;
+}
+
+.titolo-card {
+    padding: 0 0 15px 0;
+    font-weight: 600;
+    color: var(--text-color);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-bottom: 2px solid #eee;
+}
+
+.titolo-card:hover {
+    color: var(--primary-color-hover);
+}
+
+.rating-review {
+    display: flex;
+    align-items: center;
+    color: var(--text-light);
+    padding: 15px 0 15px 0;
+    border-bottom: 2px solid #eee;
+    font-size: 0.9em;
+}
+
+.icon-star,
+.icon-comment {
+    margin-right: 4px;
+}
+
+.icon-comment {
+    margin-left: 12px;
+}
+
+.meta-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 15px 0 15px 0;
+
+}
+
+.meta-tags a.tag,
+.meta-tags span.difficulty {
+    text-decoration: none;
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 16px;
+    font-size: 0.8em;
+    white-space: nowrap;
+    font-weight: 500;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.tag {
+    background-color: var(--accent-color);
+    color: #212121;
+}
+
+.tag.meal-type {
+    background-color: var(--secondary-color);
+    color: var(--white);
+}
+
+.meta-tags a.tag:hover,
+.meta-tags a.tag:focus {
+    background-color: var(--primary-color-hover);
+    color: var(--white);
+    transform: translateY(-1px);
+}
+
+.difficulty {
+    text-transform: capitalize;
+    letter-spacing: 0.3px;
+}
+
+.difficulty-easy {
+    background-color: #2e7d32;
+    color: var(--white);
+}
+
+.difficulty-medium {
+    background-color: #ff8f00;
+    color: var(--white);
+}
+
+.difficulty-hard {
+    background-color: #c62828;
+    color: var(--white);
+}
+
+/* ==========================================
+   Copertina
+   ========================================== */
+.copertina {
+    position: relative;
+    overflow: hidden;
+    height: 80vh;
+    min-height: 300px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-color) 100%);
+}
+
+.copertina .copertina-immagine {
+    position: absolute;
+    object-fit: cover;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.copertina .copertina-testo {
+    position: relative;
+    align-self: flex-end;
+    z-index: 2;
+    max-width: 90%;
+    padding: 1em 1em;
+    text-align: center;
+    color: var(--white);
+    text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.8);
+    border: 2px solid white;
+    border-radius: 12px;
+}
+
+.copertina .copertina-testo h2 {
+    margin-bottom: 0.5em;
+}
+
+.copertina::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(0deg, rgba(46, 125, 50, 0.8) 0%, rgba(230, 126, 0, 0.6) 50%, rgba(0, 0, 0, 0.2) 70%, transparent 100%);
+}
+
+/* ==========================================
+   Loading / Errori / Messagggi
+   ========================================== */
+.loading-indicator,
+.error-message,
+.no-recipes {
+    text-align: center;
+    padding: 30px 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 8px;
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+}
+
+.loading-indicator {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.error-message {
+    color: #c62828;
+    border-left: 5px solid #c62828;
+}
+
+.error-message p {
+    margin-bottom: 0.5em;
+}
+
+.retry-button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-weight: 500;
+}
+
+.retry-button:hover {
+    background-color: var(--primary-color-hover);
+}
+
+/* ==========================================
+   "View All Recipes" Button - Main Page
+   ========================================== */
+.view-all-recipes-container {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.btn-view-all {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: var(--shadow);
+    border: none;
+    cursor: pointer;
+}
+
+.btn-view-all:hover,
+.btn-view-all:focus {
+    background-color: var(--primary-color-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+    color: var(--white);
+}
+
+
+/* ==========================================
+   Footer
+   ========================================== */
+.site-footer {
+    background-color: var(--secondary-color);
+    color: #f0f0f0;
+    margin-top: 50px;
+    padding: 40px 0.75em;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.footer-section h2 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-weight: 600;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 10px;
+    display: inline-block;
+    font-size: 1.3em;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section li {
+    margin-bottom: 12px;
+}
+
+.footer-section a {
+    color: #f0f0f0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-section a:hover,
+.footer-section a:focus {
+    color: var(--accent-color);
+}
+
+.footer-section a .icon {
+    margin-right: 8px;
+}
+
+.footer-section p {
+    line-height: 1.7;
+    margin-bottom: 15px;
+    color: #e0e0e0;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    color: var(--white);
+}
+
+.social-links a span[class^="icon-"] {
+    font-size: 1.2em;
+}
+
+
+.social-links a:hover,
+.social-links a:focus {
+    background-color: var(--primary-color-hover);
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    font-size: 0.9em;
+    color: #e0e0e0;
+
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.newsletter-form {
+    display: flex;
+    margin-top: 15px;
+    max-width: 400px;
+}
+
+.newsletter-input {
+    flex-grow: 1;
+    padding: 10px 12px;
+    border: 1px solid transparent;
+    border-radius: 4px 0 0 4px;
+    font-size: 0.9rem;
+    min-width: 0;
+}
+
+.newsletter-input:focus {
+    border-color: var(--primary-color);
+}
+
+
+.newsletter-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0 15px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.newsletter-button:hover {
+    background-color: var(--primary-color-hover);
+}
+
+.newsletter-button .icon-mail {
+    font-size: 1.1em;
+}
+
+/* ==========================================
+   Scroll to Top Button
+   ========================================== */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    border: none;
+    outline: none;
+    background-color: var(--primary-color);
+    color: var(--white);
+    cursor: pointer;
+    padding-bottom: 0.2em;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    box-shadow: var(--shadow);
+    transition: background-color 0.3s ease, transform 0.2s ease, opacity 0.3s ease;
+    font-size: 1.5em;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-top-btn .icon-up {
+    transform: rotate(0deg);
+}
+
+.scroll-top-btn:hover {
+    background-color: var(--primary-color-hover);
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   Responsive Styles
+   ========================================== */
+
+/* Large Desktops & Laptops */
+@media (max-width: 1200px) {
+    .section-ricette {
+        padding: 10px 15px;
+    }
+}
+
+
+/* Tablets & Small Laptops */
+@media (max-width: 1024px) {
+    .contenuto-section-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .search-form {
+        max-width: none;
+    }
+
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .copertina {
+        height: 65vh;
+    }
+}
+
+/* Tablets & Large Phones */
+@media (max-width: 768px) {
+
+    .site-header {
+        padding: 0.75em 0.5em;
+    }
+
+    .search-container {
+        margin: 0.75em 0.5em 0.25em;
+    }
+
+    .search-form {
+        max-width: none;
+    }
+
+    .sidebar {
+        padding-top: calc(var(--header-height) + 10px);
+    }
+
+    .copertina {
+        height: 60vh;
+        min-height: 280px;
+        margin-bottom: 30px;
+    }
+
+    .copertina .copertina-testo {
+        padding: 1em 0.5em;
+    }
+
+    .btn-view-all-header {
+        width: auto;
+        font-size: 0.85em;
+    }
+
+    .contenuto-section-grid {
+        gap: 12px;
+    }
+
+    .card-content {
+        padding: 10px;
+    }
+
+    .titolo-card {
+        padding-bottom: 10px;
+    }
+
+    .rating-review,
+    .meta-tags {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .footer-container {
+        padding: 0 15px;
+    }
+
+    .footer-section h2 {
+        font-size: 1.2em;
+    }
+
+    .contenuto-section-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* Mobile Phones */
+@media (max-width: 576px) {
+    .site-header {
+        min-height: 0;
+    }
+
+    .site-logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    .titolo {
+        padding-left: 0.3em;
+    }
+
+    .icon-menu {
+        font-size: 1.3em;
+        padding: 0.4em;
+        margin-right: 0.3em;
+    }
+
+    .search-input {
+        font-size: 0.85em;
+        padding: 0 12px;
+    }
+
+    .search-button {
+        padding: 0 12px;
+    }
+
+    .search-form {
+        height: 36px;
+    }
+
+    .sidebar {
+        width: 0;
+    }
+
+    .sidebar a,
+    .sidebar .dropdown-btn,
+    .sidebar .closebtn {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+
+    .dropdown-container a {
+        padding-left: 20px;
+        font-size: 0.9rem;
+    }
+
+    #main {
+        padding: 10px;
+    }
+
+    .copertina {
+        height: 50vh;
+        min-height: 250px;
+    }
+
+    .copertina .copertina-testo {
+        max-width: 95%;
+    }
+
+    .section-ricette {
+        margin-bottom: 30px;
+        padding: 10px;
+    }
+
+    .contenuto-section-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .btn-view-all {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .footer-section {
+        text-align: left;
+    }
+
+    .footer-section h2 {
+        margin-bottom: 15px;
+        padding-bottom: 8px;
+    }
+
+    .social-links {
+        justify-content: flex-start;
+    }
+
+    .newsletter-form {
+        max-width: none;
+    }
+
+    .scroll-top-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3em;
+        bottom: 15px;
+        right: 15px;
+    }
+
+}
+
+@media (max-width: 360px) {
+
+    .meta-tags a.tag,
+    .meta-tags span.difficulty {
+        font-size: 0.75em;
+        padding: 3px 8px;
+    }
+}

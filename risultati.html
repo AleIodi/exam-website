@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Results - Delicious Recipes</title>
+    <meta name="description"
+        content="Find recipes based on your search or selected filters. Delicious Recipes offers tasty, easy, and quick dishes for every occasion.">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/risultati.css">
+    <link rel="stylesheet" href="assets/fonts/fontello-1ce90acc/css/icons.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="left-header">
+            <button class="icon-menu" title="Open Sidebar Menu" type="button" onclick="openNav()"></button>
+            <div class="logo-titolo">
+                <a href="index.html" title="Go to home page - Delicious Recipes">
+                    <img src="assets/images/logo.png" alt="Delicious Recipes Logo" class="site-logo">
+                    <span class="titolo site-name-header">Delicious Recipes</span>
+                </a>
+            </div>
+        </div>
+        <form action="risultati.html" method="GET" class="search-container search-form">
+            <input type="text" name="cerca" id="cerca" placeholder="Search for a recipe..." required
+                class="search-input">
+            <button type="submit" title="Search" class="search-button"><span class="icon-search"></span></button>
+        </form>
+    </header>
+
+    <nav id="mySidebar" class="sidebar">
+        <button type="button" title="Close sidebar" class="closebtn" onclick="closeNav()">
+            <span class="icon-cancel"></span>
+        </button>
+        <a href="index.html" title="Go to home page">
+            <span class="icon-home"></span>
+            <span>Home</span>
+        </a>
+        <button type="menu" class="dropdown-btn">
+            <div class="left-section">
+                <span class="icon-food"></span>
+                <span>Recipes</span>
+            </div>
+            <span class="icon-up" id="apri-chiudi"></span>
+        </button>
+        <div id="dropdown-container" class="dropdown-container">
+            <!-- Popolato da JS -->
+        </div>
+    </nav>
+
+    <div id="myOverlay" class="overlay"></div>
+
+    <section class="page-content-wrapper">
+        <div id="filter-menu" class="filter-menu">
+            <h2><span class="icon-filter"></span> Filters</h2>
+
+            <div class="filter-section">
+                <h3>Cuisine</h3>
+                <div id="cuisine-filters" class="filter-options">
+                    <!-- Popolato da JS -->
+                    <p class="filter-placeholder">Loading cuisines...</p>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h3>Meal Type</h3>
+                <div id="meal-type-filters" class="filter-options">
+                    <!-- Popolato da JS -->
+                    <p class="filter-placeholder">Loading meal types...</p>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h3>Tags</h3>
+                <div id="tag-filters" class="filter-options">
+                    <!-- Popolato da JS -->
+                    <p class="filter-placeholder">Loading tags...</p>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h3>Rating</h3>
+                <div id="rating-filters" class="filter-options">
+                    <!-- Popolato da JS -->
+                    <p class="filter-placeholder">Loading ratings...</p>
+                </div>
+            </div>
+
+            <div class="filter-actions">
+                <button id="apply-filters-btn" type="submit" class="btn btn-primary"><span
+                        class="icon-ok-circled"></span>
+                    Apply</button>
+                <button id="reset-filters-btn" type="reset" class="btn btn-secondary"><span class="icon-cw"></span>
+                    Reset</button>
+            </div>
+        </div>
+    </section>
+    <main id="main">
+        <div class="results-header">
+            <h1 id="results-title" class="results-title">Recipes</h1>
+            <span id="results-count" class="results-count">(0 recipes)</span>
+        </div>
+        <!-- Le sezioni delle ricette sono popolate tramite JS -->
+    </main>
+
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <section class="footer-section">
+                <h2>About Us</h2>
+                <p>Delicious Recipes is your trusted source for tasty recipes from around the world. We select the
+                    best dishes to make your cooking experience simple and satisfying.</p>
+                <div class="social-links">
+                    <a href="#" title="Follow us on Facebook"><span class="icon-facebook"></span></a>
+                    <a href="#" title="Follow us on Instagram"><span class="icon-instagram"></span></a>
+                    <a href="#" title="Follow us on Pinterest"><span class="icon-pinterest"></span></a>
+                    <a href="#" title="Subscribe to our YouTube channel"><span class="icon-youtube"></span></a>
+                </div>
+            </section>
+
+            <nav class="footer-section">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="index.html"><span class="icon-home"></span>Home</a></li>
+                    <li><a href="risultati.html?tag=popular"><span class="icon-star"></span>Popular Recipes</a></li>
+                    <li><a href="risultati.html?cuisine=Italian"><span class="icon-food"></span>Italian Cuisine</a>
+                    </li>
+                    <li><a href="risultati.html?cuisine=!Italian"><span class="icon-ok-circled"></span>International
+                            Recipes</a></li>
+                </ul>
+            </nav>
+
+            <section class="footer-section footer-categories-section">
+                <h2>Recipe Categories</h2>
+                <ul class="footer-categories-list">
+                    <!-- Popolato da JS -->
+                </ul>
+            </section>
+
+            <section class="footer-section">
+                <h2>Newsletter</h2>
+                <p>Subscribe to our newsletter to receive the latest recipes and cooking tips directly
+                    in your inbox.</p>
+                <form class="newsletter-form">
+                    <input type="email" id="newsletter-email" placeholder="Your email" required
+                        class="newsletter-input">
+                    <button type="submit" title="Submit" class="newsletter-button"><span
+                            class="icon-mail"></span></button>
+                </form>
+            </section>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Delicious Recipes. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" type="button" class="scroll-top-btn" title="Go to top">
+        <span class="icon-up"></span>
+    </button>
+
+    <script src="assets/scripts/global.js"></script>
+    <script src="assets/scripts/risultati.js"></script>
+</body>
+
+</html>

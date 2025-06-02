@@ -13,7 +13,7 @@ function toggleLoadingState(isLoading, errorMessage = null) {
     container.querySelectorAll('.loading-indicator, .error-message, .recipe-content-wrapper').forEach(el => el.remove());
 
     if (isLoading) {
-        const loader = createElement('div', 'loading-indicator', 'Loading recipes...');
+        const loader = createElement('div', 'loading-indicator', '<span class="icon-spin" aria-hidden="true" style="margin-right: 8px;"></span>Loading recipes...');
         container.appendChild(loader);
         return loader;
     } else if (errorMessage) {
@@ -286,7 +286,7 @@ function displayRecipeDetails(recipe, mainContainer) {
     mainContainer.appendChild(recipeContentWrapper);
 }
 
-// --- Funzione per durata schema.org ---
+// Funzione per durata schema.org
 function formatToISODuration(minutes) {
     if (isNaN(minutes) || minutes === null || minutes < 0) {
         return undefined;
@@ -306,7 +306,7 @@ function formatToISODuration(minutes) {
     return duration;
 }
 
-// --- Funzione per creare lo schema.org ---
+// Funzione per creare lo schema.org
 function generateRecipeSchema(recipe) {
     const placeholderImageSrc = 'assets/images/placeholder.jpg';
     const placeholderImageFullUrl = new URL(placeholderImageSrc, window.location.href).href;

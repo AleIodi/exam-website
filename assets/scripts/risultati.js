@@ -13,7 +13,7 @@ function toggleLoadingState(isLoading, errorMessage = null) {
     container.querySelectorAll('.loading-indicator, .error-message, .recipe-content-wrapper').forEach(el => el.remove());
 
     if (isLoading) {
-        const loader = createElement('div', 'loading-indicator', 'Loading recipes...');
+        const loader = createElement('div', 'loading-indicator', '<span class="icon-spin" aria-hidden="true" style="margin-right: 8px;"></span>Loading recipes...');
         container.appendChild(loader);
         return loader;
     } else if (errorMessage) {

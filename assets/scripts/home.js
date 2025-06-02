@@ -12,7 +12,7 @@ function toggleLoadingState(isLoading, errorMessage = null) {
     container.querySelectorAll('.loading-indicator, .error-message, .section-ricette, .view-all-recipes-container').forEach(el => el.remove());
 
     if (isLoading) {
-        const loader = createElement('div', 'loading-indicator', 'Loading recipes...');
+        const loader = createElement('div', 'loading-indicator', '<span class="icon-spin" aria-hidden="true" style="margin-right: 8px;"></span>Loading recipes...');
         container.appendChild(loader);
         return loader;
     } else if (errorMessage) {
@@ -78,13 +78,13 @@ function displayRecipes(recipes) {
     }
 
     try {
-        displayRecipeSection('Popular Recipes', 'popular', recipes.slice(0, 3), mainContainer);
+        displayRecipeSection('Popular Recipes', 'popular', recipes.slice(0, 3), mainContainer, 'icon-star');
 
         const italianRecipes = recipes.filter(r => r.cuisine.toLowerCase() === 'italian');
-        displayRecipeSection('Italian Cuisine', 'Italian', getRandomItems(italianRecipes, 3), mainContainer);
+        displayRecipeSection('Italian Cuisine', 'Italian', getRandomItems(italianRecipes, 3), mainContainer, 'icon-food');
 
         const nonItalianRecipes = recipes.filter(r => r.cuisine.toLowerCase() !== 'italian' && r.cuisine);
-        displayRecipeSection('International Cuisines', 'International', getRandomItems(nonItalianRecipes, 3), mainContainer);
+        displayRecipeSection('International Cuisines', 'International', getRandomItems(nonItalianRecipes, 3), mainContainer, 'icon-globe');
 
         appendViewAllButton(mainContainer);
     } catch (error) {
@@ -93,7 +93,7 @@ function displayRecipes(recipes) {
     }
 }
 
-function displayRecipeSection(title, typeParam, recipeList, container) {
+function displayRecipeSection(title, typeParam, recipeList, container, icon) {
     if (!container || !Array.isArray(recipeList) || recipeList.length === 0) return;
 
     const lowerTypeParam = typeParam.toLowerCase();
@@ -106,7 +106,7 @@ function displayRecipeSection(title, typeParam, recipeList, container) {
     const section = createElement('section', 'section-ricette');
     section.innerHTML = `
         <div class="titolo-section">
-            <div class="title-group"><a href="${titleUrl}" title="${titleAltText}"><h3>${title}</h3></a></div>
+            <div class="title-group"><a href="${titleUrl}" title="${titleAltText}"><h3><span class="${icon}"></span>${title}</h3></a></div>
             <div class="link-group">
                 <a href="${titleUrl}" title="${titleAltText}" class="btn-view-all-header">
                     View all <span class="icon-down"></span>

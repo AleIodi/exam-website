@@ -34,7 +34,7 @@
     margin: 1em 0 12px 0;
     padding-bottom: 5px;
     padding-left: 1em;
-    border-bottom: 1px solid #eee;
+    border-bottom: 2px solid #eee;
     font-weight: 600;
 }
 
@@ -173,21 +173,21 @@
 }
 
 .filter-actions .btn-primary {
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
     color: var(--white);
 }
 
 .filter-actions .btn-primary:hover {
-    background-color: var(--primary-color-hover);
+    background-color: var(--secondary-color-hover);
 }
 
 .filter-actions .btn-secondary {
-    background-color: var(--text-light);
+    background-color: var(--primary-color);
     color: var(--white);
 }
 
 .filter-actions .btn-secondary:hover {
-    background-color: var(--text-color);
+    background-color: var(--primary-color-hover);
 }
 
 .results-header {

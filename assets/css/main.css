@@ -112,6 +112,7 @@ p {
 .logo-titolo {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .logo-titolo>a {

@@ -54,6 +54,7 @@ function initSidebar() {
         }
     });
 
+    // apertura e chiusura della sidebr con tastiera
     document.addEventListener('keydown', (event) => {
         const sidebar = document.getElementById('mySidebar');
         if (event.key === 'Escape' && sidebar?.style.width === "275px") {

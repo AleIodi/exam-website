@@ -6,43 +6,40 @@
 ![No Frameworks](https://img.shields.io/badge/Frameworks-None-lightgrey?style=for-the-badge)
 
 ## 🎯 Overview
-Progetto sviluppato come prova d'esame. 
+Project developed as a exam test.
 
-**Delicious Recipes** è una Web Application completa, interattiva e responsiva che consuma un'API REST esterna (`dummyjson.com/recipes`). La particolarità architetturale di questo progetto è la sua natura **100% Vanilla**: nessun framework JavaScript o CSS è stato utilizzato. 
+**Delicious Recipes** is a complete, interactive, and responsive Web Application that consumes an external REST API (`dummyjson.com/recipes`). The architectural peculiarity of this project is its **100% Vanilla** nature: no JavaScript or CSS frameworks were used.
 
-L'obiettivo è dimostrare una padronanza delle tecnologie fondanti del Web (DOM Manipulation, Fetch API, CSS Grid/Flexbox), prerequisito fondamentale prima di astrarre le logiche con framework moderni.
+The goal is to demonstrate mastery of the foundational technologies of the Web (DOM Manipulation, Fetch API, CSS Grid/Flexbox), a fundamental prerequisite before abstracting logic with modern frameworks.
 
-## 🏗 Architettura e Design Decisions
+## 🏗 Architecture and Design Decisions
 
 ### 1. JavaScript Engine & State Management
-*   **Modularità Logica**: Sebbene non ci sia un bundler, il codice JS è suddiviso per dominio di competenza (`global.js`, `home.js`, `risultati.js`, `dettagli.js`), garantendo la Separation of Concerns.
-*   **Async/Await & Fetch API**: Gestione moderna delle chiamate di rete, con implementazione di un sistema solido di **Error Handling** e rendering condizionale degli stati di caricamento (`Loading`, `Success`, `Error`).
-*   **Routing simulato (Client-Side)**: Passaggio degli stati e dei filtri di ricerca attraverso l'oggetto `URLSearchParams`, mimando il comportamento di una SPA (Single Page Application).
+* **Logical Modularity**: Although there is no bundler, the JS code is divided by domain of competence (`global.js`, `home.js`, `risultati.js`, `dettagli.js`), ensuring Separation of Concerns.
+* **Async/Await & Fetch API**: Modern network call management, with the implementation of a solid **Error Handling** system and conditional rendering of loading states (`Loading`, `Success`, `Error`).
+* **Simulated Routing (Client-Side)**: Passing search states and filters through the `URLSearchParams` object, mimicking the behavior of a SPA (Single Page Application).
 
 ### 2. CSS Architecture & UI/UX
-*   **Design System Custom**: Utilizzo estensivo di CSS Custom Properties (Variabili `:root`) nel file `main.css` per definire una palette colori coerente, spaziature e tipografia, garantendo manutenibilità e scalabilità.
-*   **Responsive Web Design**: Approccio fluido con funzioni `clamp()` per la tipografia e un sistema di layout ibrido basato su `CSS Grid` e `Flexbox`. Completa adattabilità da schermi desktop ultra-wide a dispositivi mobile piccoli (360px).
-*   **Custom UI Components**: Implementazione da zero di componenti complessi come Sidebar navigabile, dropdown animati, filtri di ricerca multipli e un sistema di layout a schede (Recipe Cards).
+* **Custom Design System**: Extensive use of CSS Custom Properties (`:root` Variables) in the `main.css` file to define a consistent color palette, spacing, and typography, ensuring maintainability and scalability.
+* **Responsive Web Design**: Fluid approach with `clamp()` functions for typography and a hybrid layout system based on `CSS Grid` and `Flexbox`. Complete adaptability from ultra-wide desktop screens to small mobile devices (360px).
+* **Custom UI Components**: Scratch implementation of complex components like a navigable Sidebar, animated dropdowns, multiple search filters, and a card-based layout system (Recipe Cards).
 
 ### 3. SEO & Advanced Web Features
-*   **Dynamic JSON-LD Injection (Schema.org)**: Il file `dettagli.js` manipola il DOM per iniettare dinamicamente lo schema `<script type="application/ld+json">` popolandolo con i dati specifici della ricetta. Questo garantisce che i crawler dei motori di ricerca (come Google) possano generare *Rich Snippets*, dimostrando attenzione avanzata alle performance SEO.
+* **Dynamic JSON-LD Injection (Schema.org)**: The `dettagli.js` file manipulates the DOM to dynamically inject the `<script type="application/ld+json">` schema, populating it with specific recipe data. This ensures that search engine crawlers (like Google) can generate *Rich Snippets*, demonstrating advanced attention to SEO performance.
 
 ## 🚀 Key Features
 
-*   **Filtri Multipli Combinati**: L'utente può filtrare le API per categoria (Italian, International), Tipologia di pasto (Meal Type), Tags e Rating, in tempo reale.
-*   **Dynamic Breadcrumbs**: Navigazione contestualizzata all'interno della pagina di dettaglio.
-*   **Accessibility (a11y)**: Attributi `aria` dinamici, focus state definiti per la navigazione da tastiera e gestione sicura dell'overlay.
+* **Combined Multiple Filters**: The user can filter the API by category (Italian, International), Meal Type, Tags, and Rating, in real-time.
+* **Dynamic Breadcrumbs**: Contextualized navigation within the detail page.
+* **Accessibility (a11y)**: Dynamic `aria` attributes, defined focus states for keyboard navigation, and secure overlay management.
 
-## 🛠 Istruzioni per l'Avvio (Local Setup)
+## 🛠 Local Setup Instructions
 
-Essendo un progetto puramente client-side in Vanilla JS, non sono necessari compilatori o node_modules.
+Being a purely client-side project in Vanilla JS, no compilers or `node_modules` are required.
 
-1. Clona questa repository:
+1. Clone this repository:
    ```bash
    git clone https://github.com/AleIodi/exam-website.git
-Apri la cartella del progetto nel tuo editor preferito (es. VS Code).
-Lancia il progetto tramite Live Server (estensione di VS Code) per garantire che le chiamate API CORS-friendly funzionino correttamente sull'host locale.
-Il punto di ingresso dell'applicazione è index.html.
-code
-Code
-***
+Open the project folder in your favorite text editor (e.g., VS Code).
+Run the project via Live Server (VS Code extension) to ensure CORS-friendly API calls work correctly on the local host.
+The entry point of the application is index.html.

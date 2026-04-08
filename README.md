@@ -40,6 +40,7 @@ Being a purely client-side project in Vanilla JS, no compilers or `node_modules`
 1. Clone this repository:
    ```bash
    git clone https://github.com/AleIodi/exam-website.git
-Open the project folder in your favorite text editor (e.g., VS Code).
-Run the project via Live Server (VS Code extension) to ensure CORS-friendly API calls work correctly on the local host.
-The entry point of the application is index.html.
+* Open the project folder in your favorite text editor (e.g., VS Code).
+* Run the project via Live Server (VS Code extension) to ensure CORS-friendly API calls work correctly on the local host.
+* The entry point of the application is index.html.
+
